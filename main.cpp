@@ -26,8 +26,10 @@ int main() {
 	adef.setString("AKSJFDHASFUDYASUGFASYU");
 	bdef.setString("ASHJFASUIGFYUIASGFYAFAUISH");
 
-	char answer1 = 0,answer2 = 0;
-	char canswer1 = 5, canswer2 = 5;
+	int answer1 = 0,answer2 = 0;
+	int canswer1 = 5, canswer2 = 5;
+	string aanswerlist[4];
+	string banswerlist[4];
 
 
 	while(window.isOpen()){
@@ -66,9 +68,13 @@ int main() {
 
 		if(answer1 > 0){
 			//TODO answer check
+			cout << answer1 << endl;
+			answer1 = 0;
 		}
 		if(answer2 > 0){
 			//TODO answer check
+			cout << answer2 << endl;
+			answer2 = 0;
 		}
 
 		window.clear();

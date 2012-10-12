@@ -7,8 +7,6 @@
 
 using namespace std;
 
-int canswer1, canswer2;
-
 string createAnswerList(string *listOfAnswers) { 
 	stringstream answerBox;
 	answerBox << "A: " << listOfAnswers[0] << endl;
@@ -18,7 +16,7 @@ string createAnswerList(string *listOfAnswers) {
 	return answerBox.str();
 }
 
-string* createRandomList()
+string* createRandomList(int *canswerptr,string *word)
 {
 	string* arrayPointer = new string[4];
 	int waPair = rand() % 24; //The array index of the word/answer pair
@@ -26,6 +24,8 @@ string* createRandomList()
 	vector<int> chosenAnswers;
 	vector<int> usedPos;
 	int doneAnswers = 0;
+	canswerptr = &listPos;
+	word = words[waPair];
 
 	string word = words[waPair]; //Word
 	chosenAnswers.push_back(waPair);
@@ -88,7 +88,8 @@ int main() {
 	tascore.setString("0");tbscore.setString("0");
 
 	int answer1 = 0,answer2 = 0;
-	canswer1 = 5; canswer2 = 5;
+	int canswer1, canswer2;
+	string aWord;
 	string *aAnswerList;
 	string bAnswerList[4];
 	int ascore = 0,bscore = 0; 
@@ -148,8 +149,9 @@ int main() {
 			tbscore.setString(intToStr(bscore));
 		}
 		if(!madeListA) {
-			aAnswerList = createRandomList();
+			aAnswerList = createRandomList(&canswer1,aWord);
 			adef.setString(createAnswerList(aAnswerList));
+			Word1.setString(aWord);
 			madeListA = true;
 			//TODO John this is where this list changing would be called
 			//for list A

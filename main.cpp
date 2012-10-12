@@ -6,8 +6,16 @@
 #include <vector>
 
 using namespace std;
-vector<int> usedWords;
-int doneWords;
+vector<int> usedWordsA;
+vector<int> usedWordsB;
+int doneWordsA;
+int doneWordsB;
+
+void endgame()
+{
+	system("PAUSE");
+	exit(0);
+}
 
 string createAnswerList(string *listOfAnswers) { 
 	stringstream answerBox;
@@ -17,19 +25,33 @@ string createAnswerList(string *listOfAnswers) {
 	answerBox << "D: " << listOfAnswers[3] << endl << endl;
 	return answerBox.str();
 }
-
-string* createRandomList(int &canswerptr,string &theword)
+//Player 1 = a, player 2 = b
+string* createRandomList(int &canswerptr,string &theword, int player)
 {
 	string* arrayPointer = new string[4];
 	int waPair;
-	while(true)
+	if(player == 1)
 	{
-		waPair = rand() % 24; //The array index of the word/answer pair
-		if(find(usedWords.begin(),usedWords.end(),waPair) == usedWords.end())
+		while(true)
 		{
-			break;
+			waPair = rand() % 24; //The array index of the word/answer pair
+			if(find(usedWordsA.begin(),usedWordsA.end(),waPair) == usedWordsA.end())
+			{
+				break;
+			}
+		}
+	}else
+	{
+		while(true)
+		{
+			waPair = rand() % 24; //The array index of the word/answer pair
+			if(find(usedWordsB.begin(),usedWordsB.end(),waPair) == usedWordsB.end())
+			{
+				break;
+			}
 		}
 	}
+
 	
 	int listPos = rand() % 4; //The position in the list to put the answer
 	vector<int> chosenAnswers;
@@ -40,7 +62,12 @@ string* createRandomList(int &canswerptr,string &theword)
 	string word = words[waPair]; //Word
 	theword = word;
 	chosenAnswers.push_back(waPair);
-	usedWords.push_back(waPair);
+
+	if(player == 1)
+		usedWordsA.push_back(waPair);
+	else
+		usedWordsB.push_back(waPair);
+
 	string cAnswer = answers[waPair]; //Correct answer
 
 	arrayPointer[listPos] = cAnswer;
@@ -59,7 +86,15 @@ string* createRandomList(int &canswerptr,string &theword)
 			doneAnswers++;
 		}
 	}
-	doneWords++;
+	if(player == 1)
+		doneWordsA++;
+	else
+		doneWordsB++;
+	cout << "A: " << doneWordsA << endl << "B: " << doneWordsB << endl; //Debug code
+	if(doneWordsA == 24 || doneWordsB == 24)
+	{
+		endgame();
+	}
 	return arrayPointer;
 }
 string intToStr(int number) {
@@ -170,7 +205,7 @@ int main() {
 			tbscore.setPosition(window.getSize().x/4*3,40);
 		}
 		if(!madeListA) {
-			aAnswerList = createRandomList(canswer1,aWord);
+			aAnswerList = createRandomList(canswer1,aWord,1);
 			adef.setString(createAnswerList(aAnswerList));
 			Word1.setString(aWord);
 			madeListA = true;
@@ -179,7 +214,7 @@ int main() {
 			Word1.setPosition(window.getSize().x/4,80);
 		}
 		if(!madeListB) {
-			bAnswerList = createRandomList(canswer2,bWord);
+			bAnswerList = createRandomList(canswer2,bWord,2);
 			bdef.setString(createAnswerList(bAnswerList));
 			Word2.setString(bWord);
 			madeListB = true;

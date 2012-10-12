@@ -9,7 +9,7 @@ using namespace std;
 
 int canswer1, canswer2;
 
-string createAnswerList(string listOfAnswers[]) { 
+string createAnswerList(string *listOfAnswers) { 
 	stringstream answerBox;
 	answerBox << "A: " << listOfAnswers[0] << endl;
 	answerBox << "B: " << listOfAnswers[1] << endl;
@@ -18,9 +18,9 @@ string createAnswerList(string listOfAnswers[]) {
 	return answerBox.str();
 }
 
-void createRandomList()
+string* createRandomList()
 {
-	string answerListArray[4];
+	string* arrayPointer = new string[4];
 	int waPair = rand() % 24; //The array index of the word/answer pair
 	int listPos = rand() % 4; //The position in the list to put the answer
 	vector<int> chosenAnswers;
@@ -31,22 +31,23 @@ void createRandomList()
 	chosenAnswers.push_back(waPair);
 	string cAnswer = answers[waPair]; //Correct answer
 
-	answerListArray[listPos] = cAnswer;
+	arrayPointer[listPos] = cAnswer;
 	usedPos.push_back(listPos);
 
-	while(doneAnswers<4)
+	while(doneAnswers<3)
 	{
 		int randomAnswer = rand() % 24;
 		int randomPos = rand() % 4;
-		if(find(chosenAnswers.begin(),chosenAnswers.end(),randomAnswer) != chosenAnswers.end() &&
-		   find(usedPos.begin(),usedPos.end(),randomPos) != usedPos.end())
+		if((find(chosenAnswers.begin(),chosenAnswers.end(),randomAnswer) == chosenAnswers.end()) &&
+		   (find(usedPos.begin(),usedPos.end(),randomPos) == usedPos.end()))
 		{
-			answerListArray[randomPos] = answers[randomAnswer];
+			arrayPointer[randomPos] = answers[randomAnswer];
 			chosenAnswers.push_back(randomAnswer);
 			usedPos.push_back(randomPos);
 			doneAnswers++;
 		}
 	}
+	return arrayPointer;
 }
 string intToStr(int number) {
 	stringstream num;
@@ -88,18 +89,11 @@ int main() {
 
 	int answer1 = 0,answer2 = 0;
 	canswer1 = 5; canswer2 = 5;
-	string aanswerlist[4];
-	string banswerlist[4];
+	string *aAnswerList;
+	string bAnswerList[4];
 	int ascore = 0,bscore = 0; 
 
 	bool madeListA = false, madeListB = false;
-
-	/* NOTE This is justing testing code */
-	string blaha[] = {answers[0],answers[1],answers[2],answers[3]};
-	string blah = createAnswerList(blaha);
-	adef.setString(blah);
-	/* TESTING CODE */
-
 
 	while(window.isOpen()){
 		/* EVENT LOOP */
@@ -154,7 +148,9 @@ int main() {
 			tbscore.setString(intToStr(bscore));
 		}
 		if(!madeListA) {
-			createRandomList();
+			aAnswerList = createRandomList();
+			adef.setString(createAnswerList(aAnswerList));
+			madeListA = true;
 			//TODO John this is where this list changing would be called
 			//for list A
 

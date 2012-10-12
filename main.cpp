@@ -17,7 +17,7 @@ int main() {
 	Word1.setString("ajhSf");
 	Word2.setString("INSETR");
 
-	sf::Text adef;	
+	sf::Text adef;
 	sf::Text bdef;
 	adef.setFont(font);bdef.setFont(font);
 	adef.setCharacterSize(10);bdef.setCharacterSize(10);

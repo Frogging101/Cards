@@ -1,7 +1,7 @@
 **A reference file for the definitions**
 **this file is not parsed but might be in the future**
 Ahimsa: The principle of non-violence
-Ascetic: Someone who practises severe self-discipline or absrains from physical pleasures for religious purposes
+Ascetic: The practice of severe self-discipline or absrains from physical pleasures for religious purposes
 Atman: The true self
 Avatar: A deity who has descended into the world in Earthly form
 Bhagavad Gita: A sacred Hindu story about Prince Arjuna and Krishna

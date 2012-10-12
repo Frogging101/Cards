@@ -9,10 +9,10 @@ using namespace std;
 
 string createAnswerList(string *listOfAnswers) { 
 	stringstream answerBox;
-	answerBox << "A: " << listOfAnswers[0] << endl;
-	answerBox << "B: " << listOfAnswers[1] << endl;
-	answerBox << "C: " << listOfAnswers[2] << endl;
-	answerBox << "D: " << listOfAnswers[3] << endl;
+	answerBox << "A: " << listOfAnswers[0] << endl << endl;;
+	answerBox << "B: " << listOfAnswers[1] << endl << endl;
+	answerBox << "C: " << listOfAnswers[2] << endl << endl;
+	answerBox << "D: " << listOfAnswers[3] << endl << endl;
 	return answerBox.str();
 }
 

@@ -9,7 +9,7 @@ using namespace std;
 
 string createAnswerList(string *listOfAnswers) { 
 	stringstream answerBox;
-	answerBox << "A: " << listOfAnswers[0] << endl << endl;;
+	answerBox << "A: " << listOfAnswers[0] << endl << endl;
 	answerBox << "B: " << listOfAnswers[1] << endl << endl;
 	answerBox << "C: " << listOfAnswers[2] << endl << endl;
 	answerBox << "D: " << listOfAnswers[3] << endl << endl;
@@ -67,25 +67,26 @@ int main() {
 	sf::Text Word1,Word2;
 	Word1.setFont(font);Word2.setFont(font);
 	Word1.setCharacterSize(10);Word2.setCharacterSize(10);
-	Word1.setPosition(200,80);
-	Word2.setPosition(450,80);
-	Word1.setString("ajhSf");
-	Word2.setString("INSETR");
 
-	sf::Text adef;
-	sf::Text bdef;
+	sf::Text adef,bdef;
 	adef.setFont(font);bdef.setFont(font);
 	adef.setCharacterSize(10);bdef.setCharacterSize(10);
 	adef.setPosition(50,300);
 	bdef.setPosition(450,300);
-	adef.setString("AKSJFDHASFUDYASUGFASYU");
-	bdef.setString("ASHJFASUIGFYUIASGFYAFAUISH");
 
 	sf::Text tascore,tbscore;
 	tascore.setFont(font);tbscore.setFont(font);
 	tascore.setCharacterSize(16);tbscore.setCharacterSize(16);
-	tascore.setPosition(100,40);tbscore.setPosition(600,40);
 	tascore.setString("0");tbscore.setString("0");
+
+	tascore.setOrigin(tascore.getLocalBounds().width/2,tascore.getLocalBounds().height/2);
+	tascore.setPosition(window.getSize().x/4,40);
+	tbscore.setOrigin(tbscore.getLocalBounds().width/2,tbscore.getLocalBounds().height/2);
+	tbscore.setPosition(window.getSize().x/4*3,40);
+
+	sf::RectangleShape rectangle(sf::Vector2f(1, window.getSize().y));
+	rectangle.setPosition(window.getSize().x/2, 0);
+
 
 	int answer1 = -1,answer2 = -1;
 	int canswer1, canswer2;
@@ -140,6 +141,9 @@ int main() {
 			madeListA = false;
 			answer1 = -1;
 			tascore.setString(intToStr(ascore));
+
+			tascore.setOrigin(tascore.getLocalBounds().width/2,tascore.getLocalBounds().height/2);
+			tascore.setPosition(window.getSize().x/4,40);
 		}
 		if(answer2 > -1){
 			if (answer2 == canswer2) {
@@ -148,18 +152,27 @@ int main() {
 			madeListB = false;
 			answer2 = -1;
 			tbscore.setString(intToStr(bscore));
+
+			tbscore.setOrigin(tbscore.getLocalBounds().width/2,tbscore.getLocalBounds().height/2);
+			tbscore.setPosition(window.getSize().x/4*3,40);
 		}
 		if(!madeListA) {
 			aAnswerList = createRandomList(canswer1,aWord);
 			adef.setString(createAnswerList(aAnswerList));
 			Word1.setString(aWord);
 			madeListA = true;
+
+			Word1.setOrigin(Word1.getLocalBounds().width/2,Word1.getLocalBounds().height/2);
+			Word1.setPosition(window.getSize().x/4,80);
 		}
 		if(!madeListB) {
 			bAnswerList = createRandomList(canswer2,bWord);
 			bdef.setString(createAnswerList(bAnswerList));
 			Word2.setString(bWord);
 			madeListB = true;
+
+			Word2.setOrigin(Word2.getLocalBounds().width/2,Word2.getLocalBounds().height/2);
+			Word2.setPosition(window.getSize().x/4*3,80);
 		}
 
 		/* DRAW LOOP */
@@ -170,6 +183,7 @@ int main() {
 		window.draw(bdef);
 		window.draw(tascore);
 		window.draw(tbscore);
+		window.draw(rectangle);
 		window.display();
 	}
 }

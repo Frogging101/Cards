@@ -91,7 +91,7 @@ int main() {
 	int canswer1, canswer2;
 	string aWord;
 	string *aAnswerList;
-	string bAnswerList[4];
+	string *bAnswerList;
 	int ascore = 0,bscore = 0; 
 
 	bool madeListA = false, madeListB = false;
@@ -153,19 +153,11 @@ int main() {
 			adef.setString(createAnswerList(aAnswerList));
 			Word1.setString(aWord);
 			madeListA = true;
-			//TODO John this is where this list changing would be called
-			//for list A
-
-			/* Pseudo code for list generation:
-			    aAnswerList = createRandomList(); //BTW canswer1 (Correct answer 1)
-			  									// is a global now so just edit it 
-												//any way you want
-				adef.setString(createAnswerList(aAnswerList));
-			   */
-
 		}
 		if(!madeListB) {
-			//TODO Like wise for this
+			bAnswerList = createRandomList();
+			bdef.setString(createAnswerList(bAnswerList));
+			madeListB = true;
 		}
 
 		/* DRAW LOOP */

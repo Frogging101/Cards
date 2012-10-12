@@ -84,8 +84,12 @@ int main() {
 	tbscore.setOrigin(tbscore.getLocalBounds().width/2,tbscore.getLocalBounds().height/2);
 	tbscore.setPosition(window.getSize().x/4*3,40);
 
-	sf::RectangleShape rectangle(sf::Vector2f(1, window.getSize().y));
+	//Down line
+	sf::RectangleShape rectangle(sf::Vector2f(1, window.getSize().y/1.3));
 	rectangle.setPosition(window.getSize().x/2, 0);
+	//Right side line
+	sf::RectangleShape horrect(sf::Vector2f(window.getSize().x,1));
+	horrect.setPosition(0,window.getSize().y/1.3);
 
 
 	int answer1 = -1,answer2 = -1;
@@ -184,6 +188,7 @@ int main() {
 		window.draw(tascore);
 		window.draw(tbscore);
 		window.draw(rectangle);
+		window.draw(horrect);
 		window.display();
 	}
 }

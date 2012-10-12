@@ -12,9 +12,15 @@ int doneWordsA;
 int doneWordsB;
 sf::Text Word1,Word2;
 int ascore ,bscore;
+bool madeListA, madeListB;
+bool isFinish;
 
 void endgame()
 {
+	madeListA = true;
+	madeListB = true;
+	isFinish = true;
+	
 	if (ascore > bscore) {
 		Word1.setString("WIN!");
 		Word2.setString("LOSE!");
@@ -98,10 +104,11 @@ string* createRandomList(int &canswerptr,string &theword, int player)
 	else
 		doneWordsB++;
 	cout << "A: " << doneWordsA << endl << "B: " << doneWordsB << endl; //Debug code
+	/*
 	if(doneWordsA == 24 || doneWordsB == 24)
 	{
 		endgame();
-	}
+	}*/
 	return arrayPointer;
 }
 string intToStr(int number) {
@@ -163,7 +170,8 @@ int main() {
 	ascore = 0; bscore = 0;
 	//int ascore = 0,bscore = 0; 
 
-	bool madeListA = false, madeListB = false;
+	madeListA = false, madeListB = false;
+	isFinish = false;
 
 	while(window.isOpen()){
 		/* EVENT LOOP */
@@ -197,49 +205,66 @@ int main() {
 				else if(event.key.code == sf::Keyboard::P){
 					answer2 = 3;
 				}
+				if (event.key.code == sf::Keyboard::Return && isFinish) {
+					isFinish = false;
+					doneWordsA = 0;doneWordsB = 0;
+					usedWordsA.clear();usedWordsB.clear();
+					ascore = 0;bscore = 0;
+					tascore.setString("0");tbscore.setString("0");
+					madeListA = false;madeListB = false;
+					answer1=-1;answer2=-1;
+
+				}
 			}
 		}
 
 		/* UPDATE AREA */
-		if(answer1 > -1){
-			if (answer1 == canswer1) {
-				ascore+=10;
-			} else ascore-=10;
-			madeListA = false;
-			answer1 = -1;
-			tascore.setString(intToStr(ascore));
+		if (!isFinish) {
+			if(answer1 > -1){
+				if (answer1 == canswer1) {
+					ascore+=10;
+				} else ascore-=10;
+				madeListA = false;
+				answer1 = -1;
+				tascore.setString(intToStr(ascore));
 
-			tascore.setOrigin(tascore.getLocalBounds().width/2,tascore.getLocalBounds().height/2);
-			tascore.setPosition(window.getSize().x/4,40);
-		}
-		if(answer2 > -1){
-			if (answer2 == canswer2) {
-				bscore+=10;
-			}else bscore-=10;
-			madeListB = false;
-			answer2 = -1;
-			tbscore.setString(intToStr(bscore));
+				tascore.setOrigin(tascore.getLocalBounds().width/2,tascore.getLocalBounds().height/2);
+				tascore.setPosition(window.getSize().x/4,40);
+			}
+			if(answer2 > -1){
+				if (answer2 == canswer2) {
+					bscore+=10;
+				}else bscore-=10;
+				madeListB = false;
+				answer2 = -1;
+				tbscore.setString(intToStr(bscore));
 
-			tbscore.setOrigin(tbscore.getLocalBounds().width/2,tbscore.getLocalBounds().height/2);
-			tbscore.setPosition(window.getSize().x/4*3,40);
-		}
-		if(!madeListA) {
-			aAnswerList = createRandomList(canswer1,aWord,1);
-			adef.setString(createAnswerList(aAnswerList));
-			Word1.setString(aWord);
-			madeListA = true;
+				tbscore.setOrigin(tbscore.getLocalBounds().width/2,tbscore.getLocalBounds().height/2);
+				tbscore.setPosition(window.getSize().x/4*3,40);
+			}
+			if(!madeListA) {
+				aAnswerList = createRandomList(canswer1,aWord,1);
+				adef.setString(createAnswerList(aAnswerList));
+				Word1.setString(aWord);
+				madeListA = true;
 
-			Word1.setOrigin(Word1.getLocalBounds().width/2,Word1.getLocalBounds().height/2);
-			Word1.setPosition(window.getSize().x/4,80);
-		}
-		if(!madeListB) {
-			bAnswerList = createRandomList(canswer2,bWord,2);
-			bdef.setString(createAnswerList(bAnswerList));
-			Word2.setString(bWord);
-			madeListB = true;
+				Word1.setOrigin(Word1.getLocalBounds().width/2,Word1.getLocalBounds().height/2);
+				Word1.setPosition(window.getSize().x/4,80);
+			}
+			if(!madeListB) {
+				bAnswerList = createRandomList(canswer2,bWord,2);
+				bdef.setString(createAnswerList(bAnswerList));
+				Word2.setString(bWord);
+				madeListB = true;
 
-			Word2.setOrigin(Word2.getLocalBounds().width/2,Word2.getLocalBounds().height/2);
-			Word2.setPosition(window.getSize().x/4*3,80);
+				Word2.setOrigin(Word2.getLocalBounds().width/2,Word2.getLocalBounds().height/2);
+				Word2.setPosition(window.getSize().x/4*3,80);
+			}
+			if(doneWordsA == 24 || doneWordsB == 24){
+				endgame();
+				adef.setString("Press Enter to Restart!");
+				bdef.setString("Press Enter to Restart!");
+			}	
 		}
 
 		/* DRAW LOOP */

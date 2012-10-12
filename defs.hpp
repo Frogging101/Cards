@@ -38,7 +38,7 @@ const char *answers[] = {
 	" the world in earthly form",
 	"A sacred Hindu story about\n"//+
 	" Prince Arjuna and Krishna",
-	"The supreme cosmic force" 
+	"The supreme cosmic force", 
 	"A traditional Hindu social\n"
 	"level or class",
 	"Images of the God in many forms",

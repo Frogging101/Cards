@@ -1,11 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <time.h>
 #include "defs.hpp"
 using namespace std;
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800,600), "Card Game");
 	sf::Event event;
+
+	srand(time(NULL));
 
 	sf::Font font;
 	font.loadFromFile("PetMe128.ttf");

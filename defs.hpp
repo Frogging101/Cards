@@ -5,6 +5,8 @@ const char *words[] = {
 	"Avatar",
 	"Bhagavad Gita",
 	"Brahman",
+	"Caste",
+	"Deities",
 	"Dharma",
 	"Guru",
 	"Karma",
@@ -16,6 +18,7 @@ const char *words[] = {
 	"Puja",
 	"Ramayana",
 	"Samsara",
+	"Sanskrit",
 	"Untouchables",
 	"Upanishads",
 	"Vedas",
@@ -35,10 +38,10 @@ const char *answers[] = {
 	" the world in earthly form",
 	"A sacred Hindu story about\n"//+
 	" Prince Arjuna and Krishna",
-	"The supreme cosmic force Caste\n"//+
-	" A traditional Hindu social\n"//+
-	" level or class Deities Images\n"//+
-	" of the God in many forms",
+	"The supreme cosmic force" 
+	"A traditional Hindu social\n"
+	"level or class",
+	"Images of the God in many forms",
 	"One's personal code of conduct\n"//+
 	" relating to family and society;\n"//+
 	" one's duty",
@@ -60,6 +63,7 @@ const char *answers[] = {
 	"The law of birth, death and\n"//+
 	" rebirth, or the process of\n"//+
 	" reincarnation",
+	"The language of ancient India",
 	"In the tradition Hindu social\n"//+
 	" levels, the lowest outsider\n"//+
 	" class",

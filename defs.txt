@@ -5,7 +5,9 @@ Ascetic: Someone who practises severe self-discipline or absrains from physical 
 Atman: The true self
 Avatar: A deity who has descended into the world in earthly form
 Bhagavad Gita: A sacred Hindu story about Prince Arjuna and Krishna
-Brahman: The supreme cosmic force Caste A traditional Hindu social level or class Deities Images of the God in many forms
+Brahman: The supreme cosmic force 
+Caste: A traditional Hindu social level or class 
+Deities: Images of the God in many forms
 Dharma: One's personal code of conduct relating to family and society; one's duty
 Guru: Wise teacher
 Karma: The law of cause and effect, of one’s actions having an impact on one's future life
@@ -17,6 +19,7 @@ Murti: An image of Hindu deity
 Puja: Hindu worship ceremony
 Ramayana: A Hindu epic about Prince Rama and Sita
 Samsara: The law of birth, death and rebirth, or the process of reincarnation
+Sanskrit: The language of ancient India
 Untouchables: In the tradition Hindu social levels, the lowest outsider class
 Upanishads: Sacred scriptures; the final dialogues ending the Vedas
 Vedas: Early sacred scriptures of Hinduism

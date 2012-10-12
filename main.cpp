@@ -16,7 +16,7 @@ string createAnswerList(string *listOfAnswers) {
 	return answerBox.str();
 }
 
-string* createRandomList(int *canswerptr,string *word)
+string* createRandomList(int &canswerptr,string &theword)
 {
 	string* arrayPointer = new string[4];
 	int waPair = rand() % 24; //The array index of the word/answer pair
@@ -24,10 +24,10 @@ string* createRandomList(int *canswerptr,string *word)
 	vector<int> chosenAnswers;
 	vector<int> usedPos;
 	int doneAnswers = 0;
-	canswerptr = &listPos;
-	word = words[waPair];
+	canswerptr = listPos;
 
 	string word = words[waPair]; //Word
+	theword = word;
 	chosenAnswers.push_back(waPair);
 	string cAnswer = answers[waPair]; //Correct answer
 
@@ -87,9 +87,10 @@ int main() {
 	tascore.setPosition(100,40);tbscore.setPosition(600,40);
 	tascore.setString("0");tbscore.setString("0");
 
-	int answer1 = 0,answer2 = 0;
+	int answer1 = -1,answer2 = -1;
 	int canswer1, canswer2;
 	string aWord;
+	string bWord;
 	string *aAnswerList;
 	string *bAnswerList;
 	int ascore = 0,bscore = 0; 
@@ -104,59 +105,60 @@ int main() {
 			}
 			if(event.type == sf::Event::KeyPressed) {
 				if(event.key.code == sf::Keyboard::Q) {
-					answer1 = 1;
+					answer1 = 0;
 				}
 				else if(event.key.code == sf::Keyboard::W) {
-					answer1 = 2;
+					answer1 = 1;
 				}
 				else if(event.key.code == sf::Keyboard::E) {
-					answer1 = 3;
+					answer1 = 2;
 				}
 				else if(event.key.code == sf::Keyboard::R) {
-					answer1 = 4;
+					answer1 = 3;
 				}
 
 				if(event.key.code == sf::Keyboard::U) {
-					answer2 = 1;
+					answer2 = 0;
 				}
 				else if(event.key.code == sf::Keyboard::I){
-					answer2 = 2;
+					answer2 = 1;
 				}
 				else if(event.key.code == sf::Keyboard::O){
-					answer2 = 3;
+					answer2 = 2;
 				}
 				else if(event.key.code == sf::Keyboard::P){
-					answer2 = 4;
+					answer2 = 3;
 				}
 			}
 		}
 
 		/* UPDATE AREA */
-		if(answer1 > 0){
+		if(answer1 > -1){
 			if (answer1 == canswer1) {
 				ascore+=10;
 			} else ascore-=10;
 			madeListA = false;
-			answer1 = 0;
+			answer1 = -1;
 			tascore.setString(intToStr(ascore));
 		}
-		if(answer2 > 0){
+		if(answer2 > -1){
 			if (answer2 == canswer2) {
 				bscore+=10;
 			}else bscore-=10;
 			madeListB = false;
-			answer2 = 0;
+			answer2 = -1;
 			tbscore.setString(intToStr(bscore));
 		}
 		if(!madeListA) {
-			aAnswerList = createRandomList(&canswer1,aWord);
+			aAnswerList = createRandomList(canswer1,aWord);
 			adef.setString(createAnswerList(aAnswerList));
 			Word1.setString(aWord);
 			madeListA = true;
 		}
 		if(!madeListB) {
-			bAnswerList = createRandomList();
+			bAnswerList = createRandomList(canswer2,bWord);
 			bdef.setString(createAnswerList(bAnswerList));
+			Word2.setString(bWord);
 			madeListB = true;
 		}
 

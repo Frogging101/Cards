@@ -10,11 +10,18 @@ vector<int> usedWordsA;
 vector<int> usedWordsB;
 int doneWordsA;
 int doneWordsB;
+sf::Text Word1,Word2;
+int ascore ,bscore;
 
 void endgame()
 {
-	system("PAUSE");
-	exit(0);
+	if (ascore > bscore) {
+		Word1.setString("WIN!");
+		Word2.setString("LOSE!");
+	} else {
+		Word1.setString("LOSE!");
+		Word2.setString("WIN!");
+	}
 }
 
 string createAnswerList(string *listOfAnswers) { 
@@ -112,7 +119,7 @@ int main() {
 	sf::Font font;
 	font.loadFromFile("PetMe128.ttf");
 
-	sf::Text Word1,Word2;
+	//sf::Text Word1,Word2;
 	Word1.setFont(font);Word2.setFont(font);
 	Word1.setCharacterSize(10);Word2.setCharacterSize(10);
 
@@ -153,7 +160,8 @@ int main() {
 	string bWord;
 	string *aAnswerList;
 	string *bAnswerList;
-	int ascore = 0,bscore = 0; 
+	ascore = 0; bscore = 0;
+	//int ascore = 0,bscore = 0; 
 
 	bool madeListA = false, madeListB = false;
 

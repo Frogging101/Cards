@@ -1,7 +1,3 @@
-#include <iostream>
-using namespace std; //I know "using namespace" isnt proper in a header
-					 //just ignore it ;)
-
 const char *words[] = {
 	"Ahimsa",
 	"Ascetic",

@@ -1,8 +1,20 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <time.h>
+#include <sstream>
 #include "defs.hpp"
 using namespace std;
+
+int canswer1, canswer2;
+
+string createAnswerList(string listOfAnswers[]) {
+	stringstream answerBox;
+	answerBox << "A: " << listOfAnswers[0] << endl;
+	answerBox << "B: " << listOfAnswers[1] << endl;
+	answerBox << "C: " << listOfAnswers[2] << endl;
+	answerBox << "D: " << listOfAnswers[3] << endl;
+	return answerBox.str();
+}
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800,600), "Card Game");
@@ -31,12 +43,21 @@ int main() {
 	bdef.setString("ASHJFASUIGFYUIASGFYAFAUISH");
 
 	int answer1 = 0,answer2 = 0;
-	int canswer1 = 5, canswer2 = 5;
+	canswer1 = 5; canswer2 = 5;
 	string aanswerlist[4];
 	string banswerlist[4];
 
+	bool madeListA = false, madeListB = false;
+
+	/* NOTE This is justing testing code */
+	string blaha[] = {answers[0],answers[1],answers[2],answers[3]};
+	string blah = createAnswerList(blaha);
+	adef.setString(blah);
+	/* TESTING CODE */
+
 
 	while(window.isOpen()){
+		/* EVENT LOOP */
 		while(window.pollEvent(event)){
 			if(event.type == sf::Event::Closed) {
 				window.close();
@@ -70,6 +91,7 @@ int main() {
 			}
 		}
 
+		/* UPDATE AREA */
 		if(answer1 > 0){
 			//TODO answer check
 			cout << answer1 << endl;
@@ -80,7 +102,23 @@ int main() {
 			cout << answer2 << endl;
 			answer2 = 0;
 		}
+		if(!madeListA) {
+			//TODO John this is where this list changing would be called
+			//for list A
 
+			/* Pseudo code for list generation:
+			    aAnswerList = createRandomList(); //BTW canswer1 (Correct answer 1)
+			  									// is a global now so just edit it 
+												//any way you want
+				adef.setString(createAnswerList(aAnswerList));
+			   */
+
+		}
+		if(!madeListB) {
+			//TODO Like wise for this
+		}
+
+		/* DRAW LOOP */
 		window.clear();
 		window.draw(Word1);
 		window.draw(Word2);

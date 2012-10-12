@@ -3,17 +3,51 @@
 #include <time.h>
 #include <sstream>
 #include "defs.hpp"
+#include <vector>
+
 using namespace std;
 
 int canswer1, canswer2;
 
-string createAnswerList(string listOfAnswers[]) {
+string createAnswerList(string listOfAnswers[]) { 
 	stringstream answerBox;
 	answerBox << "A: " << listOfAnswers[0] << endl;
 	answerBox << "B: " << listOfAnswers[1] << endl;
 	answerBox << "C: " << listOfAnswers[2] << endl;
 	answerBox << "D: " << listOfAnswers[3] << endl;
 	return answerBox.str();
+}
+
+void createRandomList()
+{
+	string answerListArray[4];
+	int waPair = rand() % 24; //The array index of the word/answer pair
+	int listPos = rand() % 4; //The position in the list to put the answer
+	vector<int> chosenAnswers;
+	vector<int> usedPos;
+	int doneAnswers = 0;
+
+	string word = words[waPair]; //Word
+	chosenAnswers.push_back(waPair);
+	string cAnswer = answers[waPair]; //Correct answer
+
+	answerListArray[listPos] = cAnswer;
+	usedPos.push_back(listPos);
+
+	while(doneAnswers<4)
+	{
+		int randomAnswer = rand() % 24;
+		int randomPos = rand() % 4;
+		if(find(chosenAnswers.begin(),chosenAnswers.end(),randomAnswer) != chosenAnswers.end() &&
+		   find(usedPos.begin(),usedPos.end(),randomPos) != usedPos.end())
+		{
+			answerListArray[randomPos] = answers[randomAnswer];
+			chosenAnswers.push_back(randomAnswer);
+			usedPos.push_back(randomPos);
+			doneAnswers++;
+		}
+	}
+
 }
 
 int main() {
@@ -103,6 +137,7 @@ int main() {
 			answer2 = 0;
 		}
 		if(!madeListA) {
+			createRandomList();
 			//TODO John this is where this list changing would be called
 			//for list A
 

@@ -6,7 +6,7 @@ const char *words[] = {
 	"Bhagavad Gita",
 	"Brahman",
 	"Caste",
-	"Deities",
+	"Deity",
 	"Dharma",
 	"Guru",
 	"Karma",
@@ -29,13 +29,13 @@ const char *words[] = {
 // You have been warned don't blame me if anything bad happens!
 const char *answers[] = {
 	"The principle of non-violence",
-	"Someone who practises severe\n"//
+	"The practice of severe\n"//
 	" self-discipline or absrains\n"//
 	" from physical pleasures for\n"//
 	" religious purposes",
 	"The true self",
 	"A Deity who has descended into\n"//+
-	" the world in earthly form",
+	" the world in Earthly form",
 	"A sacred Hindu story about\n"//+
 	" Prince Arjuna and Krishna",
 	"The supreme cosmic force", 

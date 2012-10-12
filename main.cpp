@@ -6,6 +6,8 @@
 #include <vector>
 
 using namespace std;
+vector<int> usedWords;
+int doneWords;
 
 string createAnswerList(string *listOfAnswers) { 
 	stringstream answerBox;
@@ -19,7 +21,16 @@ string createAnswerList(string *listOfAnswers) {
 string* createRandomList(int &canswerptr,string &theword)
 {
 	string* arrayPointer = new string[4];
-	int waPair = rand() % 24; //The array index of the word/answer pair
+	int waPair;
+	while(true)
+	{
+		waPair = rand() % 24; //The array index of the word/answer pair
+		if(find(usedWords.begin(),usedWords.end(),waPair) == usedWords.end())
+		{
+			break;
+		}
+	}
+	
 	int listPos = rand() % 4; //The position in the list to put the answer
 	vector<int> chosenAnswers;
 	vector<int> usedPos;
@@ -29,6 +40,7 @@ string* createRandomList(int &canswerptr,string &theword)
 	string word = words[waPair]; //Word
 	theword = word;
 	chosenAnswers.push_back(waPair);
+	usedWords.push_back(waPair);
 	string cAnswer = answers[waPair]; //Correct answer
 
 	arrayPointer[listPos] = cAnswer;
@@ -47,6 +59,7 @@ string* createRandomList(int &canswerptr,string &theword)
 			doneAnswers++;
 		}
 	}
+	doneWords++;
 	return arrayPointer;
 }
 string intToStr(int number) {

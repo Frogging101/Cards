@@ -30,7 +30,7 @@ const char *words[] = {
 const char *answers[] = {
 	"The principle of non-violence",
 	"The practice of severe\n"//
-	" self-discipline or absrains\n"//
+	" self-discipline or abstain\n"//
 	" from physical pleasures for\n"//
 	" religious purposes",
 	"The true self",

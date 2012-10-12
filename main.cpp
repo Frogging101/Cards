@@ -16,6 +16,12 @@ string createAnswerList(string listOfAnswers[]) {
 	return answerBox.str();
 }
 
+string intToStr(int number) {
+	stringstream num;
+	num << number;
+	return num.str();
+}
+
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800,600), "Card Game");
 	sf::Event event;
@@ -42,10 +48,17 @@ int main() {
 	adef.setString("AKSJFDHASFUDYASUGFASYU");
 	bdef.setString("ASHJFASUIGFYUIASGFYAFAUISH");
 
+	sf::Text tascore,tbscore;
+	tascore.setFont(font);tbscore.setFont(font);
+	tascore.setCharacterSize(16);tbscore.setCharacterSize(16);
+	tascore.setPosition(100,40);tbscore.setPosition(600,40);
+	tascore.setString("0");tbscore.setString("0");
+
 	int answer1 = 0,answer2 = 0;
 	canswer1 = 5; canswer2 = 5;
 	string aanswerlist[4];
 	string banswerlist[4];
+	int ascore = 0,bscore = 0; 
 
 	bool madeListA = false, madeListB = false;
 
@@ -93,14 +106,20 @@ int main() {
 
 		/* UPDATE AREA */
 		if(answer1 > 0){
-			//TODO answer check
-			cout << answer1 << endl;
+			if (answer1 == canswer1) {
+				ascore+=10;
+			} else ascore-=10;
+			madeListA = false;
 			answer1 = 0;
+			tascore.setString(intToStr(ascore));
 		}
 		if(answer2 > 0){
-			//TODO answer check
-			cout << answer2 << endl;
+			if (answer2 == canswer2) {
+				bscore+=10;
+			}else bscore-=10;
+			madeListB = false;
 			answer2 = 0;
+			tbscore.setString(intToStr(bscore));
 		}
 		if(!madeListA) {
 			//TODO John this is where this list changing would be called
@@ -124,6 +143,8 @@ int main() {
 		window.draw(Word2);
 		window.draw(adef);
 		window.draw(bdef);
+		window.draw(tascore);
+		window.draw(tbscore);
 		window.display();
 	}
 }

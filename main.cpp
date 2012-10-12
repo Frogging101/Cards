@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "defs.hpp"
 using namespace std;
 
 int main() {

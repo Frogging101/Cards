@@ -104,6 +104,13 @@ int main() {
 	sf::RectangleShape horrect(sf::Vector2f(window.getSize().x,1));
 	horrect.setPosition(0,window.getSize().y/1.3);
 
+	//Rules text
+	sf::Text trules;
+	trules.setFont(font);
+	trules.setCharacterSize(10);
+	trules.setString(rules);
+	trules.setPosition(50,window.getSize().y/1.2);
+
 
 	int answer1 = -1,answer2 = -1;
 	int canswer1, canswer2;
@@ -202,6 +209,7 @@ int main() {
 		window.draw(tbscore);
 		window.draw(rectangle);
 		window.draw(horrect);
+		window.draw(trules);
 		window.display();
 	}
 }

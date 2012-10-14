@@ -160,6 +160,11 @@ int main() {
 	trules.setString(rules);
 	trules.setPosition(50,window.getSize().y/1.2);
 
+	sf::Text bugfix;
+	bugfix.setFont(font);
+	bugfix.setString("This text solves the bug somehow");
+	bugfix.setCharacterSize(10);
+	bugfix.setColor(sf::Color::Transparent);
 
 	int answer1 = -1,answer2 = -1;
 	int canswer1, canswer2;
@@ -267,6 +272,8 @@ int main() {
 			}	
 		}
 
+
+
 		/* DRAW LOOP */
 		window.clear();
 		window.draw(Word1);
@@ -277,6 +284,7 @@ int main() {
 		window.draw(tbscore);
 		window.draw(rectangle);
 		window.draw(horrect);
+		window.draw(bugfix);
 		window.draw(trules);
 		window.display();
 	}

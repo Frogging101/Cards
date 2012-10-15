@@ -30,12 +30,22 @@ void endgame()
 	}
 }
 
-string createAnswerList(string *listOfAnswers) { 
+string createAnswerList(string *listOfAnswers,int player) { 
 	stringstream answerBox;
-	answerBox << "A: " << listOfAnswers[0] << endl << endl;
-	answerBox << "B: " << listOfAnswers[1] << endl << endl;
-	answerBox << "C: " << listOfAnswers[2] << endl << endl;
-	answerBox << "D: " << listOfAnswers[3] << endl << endl;
+	if(player == 0)
+	{
+	answerBox << "Q: " << listOfAnswers[0] << endl << endl;
+	answerBox << "W: " << listOfAnswers[1] << endl << endl;
+	answerBox << "E: " << listOfAnswers[2] << endl << endl;
+	answerBox << "R: " << listOfAnswers[3] << endl << endl;
+	}
+	if(player == 1)
+	{
+	answerBox << "U: " << listOfAnswers[0] << endl << endl;
+	answerBox << "I: " << listOfAnswers[1] << endl << endl;
+	answerBox << "O: " << listOfAnswers[2] << endl << endl;
+	answerBox << "P: " << listOfAnswers[3] << endl << endl;
+	}
 	return answerBox.str();
 }
 //Player 1 = a, player 2 = b
@@ -249,7 +259,7 @@ int main() {
 			}
 			if(!madeListA) {
 				aAnswerList = createRandomList(canswer1,aWord,1);
-				adef.setString(createAnswerList(aAnswerList));
+				adef.setString(createAnswerList(aAnswerList,0));
 				Word1.setString(aWord);
 				madeListA = true;
 
@@ -258,7 +268,7 @@ int main() {
 			}
 			if(!madeListB) {
 				bAnswerList = createRandomList(canswer2,bWord,2);
-				bdef.setString(createAnswerList(bAnswerList));
+				bdef.setString(createAnswerList(bAnswerList,1));
 				Word2.setString(bWord);
 				madeListB = true;
 

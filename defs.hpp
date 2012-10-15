@@ -80,5 +80,5 @@ const char* rules = "For each word at the top there are four definitions\n"
 					"corresponding to the correct definition, for each correct\n"
 					"answer the corresponding player gains 10 points, and for each\n"
 					"wrong answer the corresponding player loses 10 points.\n"
-					"The game ends when one of the players have have exhausted all\n"
+					"The game ends when one of the players have exhausted all\n"
 					"of the possible words, and the player with the most points wins!";
